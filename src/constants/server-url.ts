@@ -1,1 +1,1 @@
-export const SERVER_URL = "https://bakery.the-watcher.uz/"
+export const SERVER_URL = "https://bakery.edumir.uz/";

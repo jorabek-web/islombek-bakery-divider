@@ -9,4 +9,4 @@ export const branchApi = baseApi.injectEndpoints({
     }),
 });
 
-export const { useGetBranchQuery } = branchApi;
+export const { useGetBranchQuery, useLazyGetBranchQuery } = branchApi;

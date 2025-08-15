@@ -1,7 +1,7 @@
 export enum PATHS {
-    LOGIN = "/user/login",
-    ME = "/user/profile",
-    EDIT = "/user/",
-    UPLOAD = "/upload"
-  }
-  
+  LOGIN = "/auth/login",
+  ME = "/auth/me",
+  EDIT = "/auth/update-avatar",
+  UPLOAD = "/upload",
+  EDIT_PASSWORD = "/auth/update-password",
+}

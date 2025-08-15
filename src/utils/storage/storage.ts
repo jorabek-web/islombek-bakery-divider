@@ -5,11 +5,10 @@ class Storage {
     if (token) {
       localStorage.setItem("token", `Bearer ${token}`);
     }
-  } 
+  }
 
   public removeCredentials() {
-    // localStorage.removeItem("token");
-    // localStorage.removeItem("ROLE");
+    localStorage.removeItem("token");
   }
 
   public getTokens(): { accessToken: string | null } {
@@ -17,6 +16,6 @@ class Storage {
       accessToken: localStorage.getItem("token"),
     };
   }
-} 
+}
 
 export const useStorage = new Storage();
