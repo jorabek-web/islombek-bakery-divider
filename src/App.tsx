@@ -5,6 +5,7 @@ import Login from "./app/auth/login";
 import { InstallApp } from "./components";
 const Notification = lazy(() => import("./app/notification/notification"));
 const Profile = lazy(() => import("./app/profile/profile"));
+const Message = lazy(() => import("./app/message/message"));
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/" element={<PageLayout />}>
           <Route index element={<Profile />} />
           <Route path="/notification" element={<Notification />} />
+          <Route path="/message" element={<Message />} />
         </Route>
       </Routes>
       <InstallApp />

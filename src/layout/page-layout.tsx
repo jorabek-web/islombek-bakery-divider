@@ -48,7 +48,7 @@ export const PageLayout = () => {
 
   return (
     <div>
-      {location.pathname === "/p" && <TopBar />}
+      {location.pathname === "/message" && <TopBar />}
       <div className="py-[80px] px-[20px]">
         <Outlet />
       </div>
