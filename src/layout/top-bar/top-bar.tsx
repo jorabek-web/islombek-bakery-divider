@@ -1,9 +1,8 @@
 import { Title } from "@/components";
 import { useGetUSerMeQuery } from "@/integration";
-import { BsArrowLeftCircleFill } from "react-icons/bs";
 import { FaBell } from "react-icons/fa";
 import { IoArrowBack } from "react-icons/io5";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const TopBar = () => {
   const { data: userMe } = useGetUSerMeQuery({});
