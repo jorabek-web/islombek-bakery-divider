@@ -21,7 +21,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export const MessageUI = () => {
   const { id } = useParams();
-  const { data } = useGetUserQuery({ id } as string);
+  const { data } = useGetUserQuery({ id: id as string });
 
   const [post, { isLoading }] = usePostMessageMutation();
   const [readMsg] = useReadMessageMutation();
@@ -54,7 +54,13 @@ export const MessageUI = () => {
     }
   };
 
-  const handleReadMessage = async ({ idUser, idMsg }: any) => {
+  const handleReadMessage = async ({
+    idUser,
+    idMsg,
+  }: {
+    idUser: string;
+    idMsg: string;
+  }) => {
     if (!idUser && !idMsg) {
       return;
     }
