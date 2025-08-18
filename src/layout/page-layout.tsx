@@ -1,5 +1,4 @@
-import { Outlet, useLocation } from "react-router-dom";
-import { TopBar } from "./top-bar";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { Menu } from "./menu";
 import { useGetUSerMeQuery } from "@/integration";
 import { useStorage } from "@/utils";
@@ -7,11 +6,13 @@ import toast, { Toaster } from "react-hot-toast";
 import { Button } from "@/components/ui/button";
 import { roles } from "@/constants";
 import { useEffect } from "react";
+import useQueryParam from "@/hooks/useQueryParam";
 
 export const PageLayout = () => {
   const location = useLocation();
-  const { data: user } = useGetUSerMeQuery({});
-  const token = useStorage.getTokens().accessToken;
+  const { data: user, refetch, isError } = useGetUSerMeQuery({});
+  const navigate = useNavigate();
+  const [token] = useQueryParam("token", "");
 
   useEffect(() => {
     if (user?._id) {
@@ -20,7 +21,28 @@ export const PageLayout = () => {
     }
   }, [token, user]);
 
-  console.log(user);
+  useEffect(() => {
+    if (token) {
+      useStorage.setCredentials({ token });
+      refetch();
+    }
+
+    if (!useStorage.getTokens().accessToken || isError) {
+      handleRemoveLocalStorage();
+      return;
+    }
+
+    if (user && user?.role !== roles.PARKASH) {
+      toast.error("bu ilova siz uchun emas");
+      handleRemoveLocalStorage();
+    }
+  }, [isError, user, token]);
+
+  function handleRemoveLocalStorage() {
+    useStorage.removeCredentials();
+    localStorage.removeItem("userId");
+    navigate("/login");
+  }
 
   if (user && token && "message" in user && user.role === roles.PARKASH) {
     toast(user.message!);
@@ -48,11 +70,16 @@ export const PageLayout = () => {
 
   return (
     <div>
-      {location.pathname === "/message" && <TopBar />}
+      <Toaster />
+
+      {/* {location.pathname === "/message" && <TopBar />} */}
       <div className="py-[80px] px-[20px]">
         <Outlet />
       </div>
-      {location.pathname === "/" && <Menu />}
+      {(location.pathname === "/" ||
+        location.pathname === "/notification" ||
+        location.pathname === "/messages" ||
+        location.pathname === "/salaries") && <Menu />}
     </div>
   );
 };

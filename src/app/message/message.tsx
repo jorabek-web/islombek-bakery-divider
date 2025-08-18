@@ -1,6 +1,7 @@
-import { MessageUI } from "@/page-ui/message/message";
+import { MessageUI } from "@/page-ui/message";
 
-const message = () => {
+
+const Message = () => {
   return (
     <div>
       <MessageUI />
@@ -8,4 +9,4 @@ const message = () => {
   );
 };
 
-export default message;
+export default Message;

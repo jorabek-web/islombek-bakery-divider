@@ -10,6 +10,7 @@ import { useUpdatePasswordMutation } from "@/integration/api/authApi";
 import { useStorage } from "@/utils";
 import { useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { toast, Toaster } from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { MdLock } from "react-icons/md";
 
@@ -62,6 +63,7 @@ export const ChangePassword = () => {
       setIsOpen(false);
       setIsEyePasswordVisible({});
       useStorage.removeCredentials();
+      toast.success("Parol muvaffaqiyatli o'zgartirildi!");
       window.location.href = "/login";
     } catch (error) {
       console.log(error);
@@ -69,6 +71,7 @@ export const ChangePassword = () => {
   };
   return (
     <div>
+      <Toaster />
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetTrigger className="w-full">
           <div className="rounded-[8px] p-[10px] bg-white flex items-center gap-[7px] ">

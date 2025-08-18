@@ -1,3 +1,7 @@
+interface GetAllUsersRequest {
+  roles: string[];
+}
+
 interface GetAllUsersResponse {
   _id: string;
   fullName: string;
@@ -11,7 +15,7 @@ interface GetAllUsersResponse {
 }
 
 interface GetUserRequest {
-  id?: string;
+  id: string;
 }
 interface Sessions {
   _id: string;

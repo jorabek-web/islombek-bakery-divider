@@ -1,0 +1,41 @@
+// import { User } from "../userApi/types";
+
+interface FroAndTomUser {
+  _id: string;
+  role: string;
+  fullName: string;
+}
+export interface GetComplaintResponse {
+  _id: string;
+  from: FroAndTomUser;
+  to: string;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface GetMyComplaintsResponse {
+  _id: string;
+  from: string;
+  to: FroAndTomUser;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface GetComplaintRequest {
+  id: string;
+}
+
+export type GetComplainMessageResponse = {
+  from: string;
+  to: string;
+  content: string;
+  _id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+export type GetComplainMessageRequest = {
+  content: string;
+  to: string;
+};

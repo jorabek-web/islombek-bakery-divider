@@ -22,9 +22,11 @@ export const ParkashNotification = () => {
   //   };
   // }, []);
 
+  console.log(notifications);
+
   return (
     <>
-      <div className="border-b-2 border-[#FFCC15] rounded-b-[30px] bg-[#1C2C57] p-[12px] pt-[20px] -ml-[20px] fixed top-0 w-full">
+      <div className="border-b-2 border-[#FFCC15] rounded-b-[30px] bg-[#1C2C57] p-[12px] pt-[20px] fixed top-0 left-0 w-full">
         <div className="flex justify-between items-center">
           <Link to={"/"}>
             <IoArrowBack
@@ -36,47 +38,33 @@ export const ParkashNotification = () => {
         </div>
       </div>
       <div className="pt-[35px] text-white space-y-3">
-        {/* {[
-          {
-            type: "DELIVERED",
-            _id: 1234534545,
-            from: { fullName: "Jo'rabk" },
-            createdAt: 123456,
-            delivery: { breads: 203 },
-          },
-        ] */}
         {notifications ? (
           notifications?.length ? (
-            notifications
-              ?.filter((item) => item.type === "DELIVERED" && item.delivery)
-              .map((item) => (
-                <div
-                  key={item._id}
-                  className="rounded-[12px] border-[2px] border-[#FFCC15] p-[10px] flex items-center justify-between"
-                >
-                  <p className="text-[20px] font-[600]">Xamir keldi</p>
-                  <div className="flex flex-col gap-2 pt-[10px]">
-                    <div className="flex items-center gap-x-2">
-                      <LuCalendarDays size={20} />
-                      <p className="text-[10px] font-[400]">
-                        {new Date(item.createdAt).toLocaleDateString()}
-                      </p>
-                    </div>
-                    <div className="flex items-center gap-x-2">
-                      <FaRegClock size={20} />
-                      <p className="text-[10px] font-[400]">
-                        {new Date(item.createdAt).toLocaleTimeString()}
-                      </p>
-                    </div>
+            notifications.map((item) => (
+              <div
+                key={item._id}
+                className="rounded-[12px] border-[2px] border-[#FFCC15] p-[10px] flex items-center justify-between"
+              >
+                <p className="text-[20px] font-[600]">{item.title}</p>
+                <div className="flex flex-col gap-2 pt-[10px]">
+                  <div className="flex items-center gap-x-2">
+                    <LuCalendarDays size={20} />
+                    <p className="text-[10px] font-[400]">
+                      {new Date(item.createdAt).toLocaleDateString()}
+                    </p>
                   </div>
-                  {/* {item?.status === "PENDING" && (
-                            // <div className="flex items-center justify-between pt-[25px]">
-                            //     <Button variant='destructive' onClick={() => updateNotification({ id: item._id, status: "REJECTED" })}>Bekor qilish</Button>
-                            //     <Button variant='greenary' onClick={() => updateNotification({ id: item._id, status: "ACCEPTED" })}>Tasdiqlash</Button>
-                            // </div>
-                        )} */}
+                  <div className="flex items-center gap-x-2">
+                    <FaRegClock size={20} />
+                    <p className="text-[10px] font-[400]">
+                      {new Date(item.createdAt).toLocaleTimeString()}
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-x-2">
+                    <p className="text-[10px] font-[400]">{item.body}</p>
+                  </div>
                 </div>
-              ))
+              </div>
+            ))
           ) : (
             <p className="text-center text-white">
               hozircha bildirishnomalar mavjud emas

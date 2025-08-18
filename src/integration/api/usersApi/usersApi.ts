@@ -3,8 +3,8 @@ import { PATHS } from "./paths";
 
 export const UserApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    getUsers: build.query<GetAllUsersResponse[], string[]>({
-      query: (roles) => {
+    getUsers: build.query<GetAllUsersResponse[], GetAllUsersRequest>({
+      query: ({ roles }) => {
         const roleParams = roles
           ? roles?.map((role: string) => `roles=${role}`).join("&")
           : "";
@@ -15,7 +15,7 @@ export const UserApi = baseApi.injectEndpoints({
       },
     }),
     getUser: build.query<GetAllUsersResponse, GetUserRequest>({
-      query: (id) => ({
+      query: ({ id }) => ({
         url: `${PATHS.GET_USER}${id}`,
         method: "GET",
       }),

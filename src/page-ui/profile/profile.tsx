@@ -1,5 +1,6 @@
 import { FaCamera } from "react-icons/fa";
 import { ChangePassword, LeaveTheAccount } from "./_components";
+import { IoIosArrowForward, IoMdNotifications } from "react-icons/io";
 
 import {
   useProfileQuery,
@@ -7,11 +8,13 @@ import {
   useUploadImageMutation,
 } from "@/integration/api/authApi";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { BiSolidMessageError } from "react-icons/bi";
 export const ProfileUI = () => {
   const { data: profile } = useProfileQuery({});
   const [updateAvatar] = useUpdateAvatarMutation();
   const [uploadImage] = useUploadImageMutation();
-  // const [user, setUser] = useState<ProfileResponse>();
+  const navigate = useNavigate();
   const [avatarImg, setavatarImg] = useState(
     "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
   );
@@ -66,10 +69,42 @@ export const ProfileUI = () => {
           <p className="text-[24px] font-semibold text-white">
             {profile?.fullName}
           </p>
+          <div className="absolute bottom-6 right-20">
+            <IoMdNotifications
+              onClick={() => navigate("/notification")}
+              className="relative left-14"
+              size={30}
+              color="#FFCC15"
+              cursor={"pointer"}
+            />
+          </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 w-full gap-y-[20px] pt-[140px] text-[#1C2C57]">
+      <div className="grid grid-cols-1 w-full gap-y-[20px] pt-[100px] text-[#1C2C57]">
+        <div className="flex items-center justify-between">
+          <BiSolidMessageError
+            onClick={() => navigate("/information")}
+            size={25}
+            color="#FFCC15"
+            cursor={"pointer"}
+          />
+        </div>
+
+        <div className="w-full text-white text-center font-inter text-[25px] font-bold tracking-[1px] flex items-center gap-2">
+          <button
+            className="w-full bg-white p-3 rounded-lg flex items-center gap-5 border-2 border-solid border-yellow-400 mb-4"
+            onClick={() => navigate("/salaries")}
+          >
+            <span className="text-[#1C2C57] font-bold text-[15px]">
+              Maoshlarim
+            </span>
+            <span className="bg-[#1C2C57] p-1 px-1.5 rounded-md absolute t-[50%] right-8">
+              <IoIosArrowForward color="#FFCC15" />
+            </span>
+          </button>
+        </div>
+
         <ChangePassword />
 
         <LeaveTheAccount />

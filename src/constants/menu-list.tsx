@@ -1,4 +1,5 @@
 import { CiUser } from "react-icons/ci";
+import { IoMdNotifications } from "react-icons/io";
 import { TiMessages } from "react-icons/ti";
 
 export const PARKASH_MENU_LIST = [
@@ -9,8 +10,14 @@ export const PARKASH_MENU_LIST = [
   },
 
   {
+    icon: <IoMdNotifications size={25} />,
+    label: "Notification",
+    link: "/notification",
+  },
+
+  {
     icon: <TiMessages size={25} />,
-    label: "Xabarlar",
-    link: "/message",
+    label: "Message",
+    link: "/messages",
   },
 ];

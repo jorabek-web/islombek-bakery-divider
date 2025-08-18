@@ -6,6 +6,9 @@ import { InstallApp } from "./components";
 const Notification = lazy(() => import("./app/notification/notification"));
 const Profile = lazy(() => import("./app/profile/profile"));
 const Message = lazy(() => import("./app/message/message"));
+const Messages = lazy(() => import("./app/messages/messages"));
+const Salaries = lazy(() => import("./app/salaries/salaries"));
+const Complaints = lazy(() => import("./app/complaints/complaints"));
 
 const App = () => {
   return (
@@ -21,7 +24,10 @@ const App = () => {
         <Route path="/" element={<PageLayout />}>
           <Route index element={<Profile />} />
           <Route path="/notification" element={<Notification />} />
-          <Route path="/message" element={<Message />} />
+          <Route path="/messages" element={<Messages />} />
+          <Route path="/message/:id" element={<Message />} />
+          <Route path="/salaries" element={<Salaries />} />
+          <Route path="/information" element={<Complaints />} />
         </Route>
       </Routes>
       <InstallApp />
