@@ -45,6 +45,8 @@ export const ProfileUI = () => {
     }
   }, [profile]);
 
+  console.log(profile);
+
   return (
     <div>
       <div className="border-b-2 border-[#FFCC15] rounded-b-[30px] bg-[#1C2C57] p-[12px] py-[30px] fixed top-0 w-full -mt-[30px] -ml-[20px]">

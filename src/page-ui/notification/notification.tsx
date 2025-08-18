@@ -1,29 +1,12 @@
-import { Title } from "@/components";
-import { useGetNotificationsQuery } from "@/integration";
-import { FaRegClock } from "react-icons/fa";
+import { Tabs, Title } from "@/components";
 import { IoArrowBack } from "react-icons/io5";
-import { LuCalendarDays } from "react-icons/lu";
 import { Link } from "react-router-dom";
+import { Avans, Xabarnoma, Zuvala } from "./components";
+import { roles } from "@/constants";
+import { useGetUSerMeQuery } from "@/integration";
 
 export const ParkashNotification = () => {
-  const userId = localStorage.getItem("userId") || "";
-  const {
-    data: notifications,
-    // refetch,
-  } = useGetNotificationsQuery({
-    id: userId,
-  });
-
-  // useEffect(() => {
-  //   const handleNotification = () => refetch();
-  //   socket.on("notification", handleNotification);
-  //   return () => {
-  //     socket.off("notification", handleNotification);
-  //   };
-  // }, []);
-
-  console.log(notifications);
-
+  const { data: user_me } = useGetUSerMeQuery({});
   return (
     <>
       <div className="border-b-2 border-[#FFCC15] rounded-b-[30px] bg-[#1C2C57] p-[12px] pt-[20px] fixed top-0 left-0 w-full">
@@ -37,41 +20,42 @@ export const ParkashNotification = () => {
           <Title text={"Bildirishnoma"} className="text-white mx-auto" />
         </div>
       </div>
-      <div className="pt-[35px] text-white space-y-3">
-        {notifications ? (
-          notifications?.length ? (
-            notifications.map((item) => (
-              <div
-                key={item._id}
-                className="rounded-[12px] border-[2px] border-[#FFCC15] p-[10px] flex items-center justify-between"
-              >
-                <p className="text-[20px] font-[600]">{item.title}</p>
-                <div className="flex flex-col gap-2 pt-[10px]">
-                  <div className="flex items-center gap-x-2">
-                    <LuCalendarDays size={20} />
-                    <p className="text-[10px] font-[400]">
-                      {new Date(item.createdAt).toLocaleDateString()}
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-x-2">
-                    <FaRegClock size={20} />
-                    <p className="text-[10px] font-[400]">
-                      {new Date(item.createdAt).toLocaleTimeString()}
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-x-2">
-                    <p className="text-[10px] font-[400]">{item.body}</p>
-                  </div>
-                </div>
-              </div>
-            ))
-          ) : (
-            <p className="text-center text-white">
-              hozircha bildirishnomalar mavjud emas
-            </p>
-          )
+
+      <div>
+        {user_me?.role === roles.PARKASH ? (
+          <Tabs
+            contentClassName="mt-[20px]"
+            tabs={[
+              {
+                label: "Zuvala",
+                children: <Zuvala />,
+              },
+              {
+                label: "Avans",
+                children: <Avans />,
+              },
+              {
+                label: "Xabarnoma",
+                children: <Xabarnoma />,
+              },
+            ]}
+            defaultTabIndex={0}
+          />
         ) : (
-          <p className="text-center text-white">Loading...</p>
+          <Tabs
+            contentClassName="mt-[20px]"
+            tabs={[
+              {
+                label: "Avans",
+                children: <Avans />,
+              },
+              {
+                label: "Xabarnoma",
+                children: <Xabarnoma />,
+              },
+            ]}
+            defaultTabIndex={0}
+          />
         )}
       </div>
     </>

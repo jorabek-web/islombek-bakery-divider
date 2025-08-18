@@ -9,7 +9,7 @@ import {
   IoCheckmarkOutline,
   IoSend,
 } from "react-icons/io5";
-import toast, { Toaster } from "react-hot-toast";
+import { toast, Toaster } from "react-hot-toast";
 import {
   useGetMessageQuery,
   useGetUSerMeQuery,

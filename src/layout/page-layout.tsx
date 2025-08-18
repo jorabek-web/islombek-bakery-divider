@@ -32,7 +32,7 @@ export const PageLayout = () => {
       return;
     }
 
-    if (user && user?.role !== roles.PARKASH) {
+    if (user && ![roles.PARKASH, roles.BAKER].includes(user?.role as roles)) {
       toast.error("bu ilova siz uchun emas");
       handleRemoveLocalStorage();
     }
@@ -44,7 +44,12 @@ export const PageLayout = () => {
     navigate("/login");
   }
 
-  if (user && token && "message" in user && user.role === roles.PARKASH) {
+  if (
+    user &&
+    token &&
+    "message" in user &&
+    (user.role === roles.PARKASH || user.role === roles.BAKER)
+  ) {
     toast(user.message!);
     return (
       <div>

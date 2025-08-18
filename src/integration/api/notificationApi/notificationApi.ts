@@ -1,4 +1,10 @@
-import { GetNotificationRequest } from "./types.d";
+import {
+  GetDoughBallNotificationRequest,
+  GetDoughBallNotificationResponse,
+  GetNotificationRequest,
+  UpdateDoughBallNotificationRequest,
+  UpdateDoughBallNotificationResponse,
+} from "./types.d";
 import { baseApi } from "../baseApi";
 import { PATHS } from "./path";
 import { GetNotificationResponse } from "./types";
@@ -44,8 +50,48 @@ export const notificationApi = baseApi.injectEndpoints({
       }),
       providesTags: ["Notification"],
     }),
+    getDoughBallNotifications: build.query<
+      GetDoughBallNotificationResponse[],
+      unknown
+    >({
+      query: () => ({
+        url: PATHS.DOUGH_BALL_NOTIFICATIONS,
+        method: "GET",
+      }),
+      providesTags: ["Notification"],
+    }),
+    getDoughBallNotification: build.query<
+      GetDoughBallNotificationResponse,
+      GetDoughBallNotificationRequest
+    >({
+      query: ({ id }) => ({
+        url: PATHS.DOUGH_BALL_NOTIFICATION + id,
+        method: "GET",
+      }),
+      providesTags: ["Notification"],
+    }),
+
+    updateDoughBallNotification: build.mutation<
+      UpdateDoughBallNotificationResponse,
+      UpdateDoughBallNotificationRequest
+    >({
+      query: ({ id, status }) => ({
+        url:
+          PATHS.UPDATE_DOUGH_BALL_NOTIFICATION_START +
+          id +
+          PATHS.UPDATE_DOUGH_BALL_NOTIFICATION_END +
+          status,
+        method: "PATCH",
+      }),
+      invalidatesTags: ["Notification"],
+    }),
   }),
 });
 
-export const { useGetNotificationsQuery, useGetNotificationQuery } =
-  notificationApi;
+export const {
+  useGetNotificationsQuery,
+  useGetNotificationQuery,
+  useGetDoughBallNotificationsQuery,
+  useGetDoughBallNotificationQuery,
+  useUpdateDoughBallNotificationMutation,
+} = notificationApi;

@@ -41,7 +41,7 @@ export const MessagesUI = () => {
     const fallback =
       "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
     try {
-      return JSON.parse(avatar)?.url || fallback;
+      return avatar || fallback;
     } catch {
       return fallback;
     }
