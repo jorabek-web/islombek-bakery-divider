@@ -15,7 +15,7 @@ export const Zuvala = () => {
     useUpdateDoughBallNotificationMutation();
 
   const handleUpdate = async (id: string, status: string) => {
-    const res = await update_dough_ball_notification({ id, status });
+    const res = await update_dough_ball_notification({ id, status }).unwrap();
 
     if (res.data) {
       toast.success(res.data.message);
@@ -23,7 +23,6 @@ export const Zuvala = () => {
       toast.error(res.error.data.message);
     }
   };
-
 
   return (
     <div>

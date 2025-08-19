@@ -38,25 +38,23 @@ export interface UpdateDoughBallNotificationRequest {
   status: string;
 }
 
-interface UpdateDoughBallNotificationdata {
+
+interface UpdateDoughBallNotificationSuccess {
   message: string;
 }
 
-interface UpdateDoughBallNotificationErrorData {
-  statusCode: number;
-  error: string;
-  message: string;
-}
 interface UpdateDoughBallNotificationError {
-  data: UpdateDoughBallNotificationErrorData;
   status: number;
+  data: {
+    statusCode: number;
+    error: string;
+    message: string;
+  };
 }
 
-export interface UpdateDoughBallNotificationResponse {
-  data?: UpdateDoughBallNotificationdata;
-  error?: UpdateDoughBallNotificationError;
-  status?: number;
-}
+type UpdateDoughBallNotificationResponse =
+  | { data: UpdateDoughBallNotificationSuccess; error?: undefined }
+  | { data?: undefined; error: UpdateDoughBallNotificationError };
 
 interface NotificationSubscribeRequest {
   endpoint: string;
