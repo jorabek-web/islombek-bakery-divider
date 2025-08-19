@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { PageLayout } from "./layout";
 import Login from "./app/auth/login";
 import { InstallApp } from "./components";
+import { NotFound } from "./page-ui";
 const Notification = lazy(() => import("./app/notification/notification"));
 const Profile = lazy(() => import("./app/profile/profile"));
 const Message = lazy(() => import("./app/message/message"));
@@ -28,6 +29,7 @@ const App = () => {
           <Route path="/message/:id" element={<Message />} />
           <Route path="/salaries" element={<Salaries />} />
           <Route path="/information" element={<Complaints />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
       <InstallApp />
