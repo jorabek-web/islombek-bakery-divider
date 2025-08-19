@@ -29,22 +29,22 @@ export const Xabarnoma = () => {
                 key={item._id}
                 className="rounded-[12px] border-[2px] border-[#FFCC15] p-[10px] text-white"
               >
-                <p className="text-[20px] font-[600]">{item.title}</p>
-                <div className="flex items-center justify-between gap-2 py-[10px]">
-                  <div className="flex items-center gap-x-2">
-                    <LuCalendarDays size={20} />
-                    <p className="text-[10px] font-[400]">
-                      {new Date(item.createdAt).toLocaleDateString()}
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-x-2">
-                    <FaRegClock size={20} />
-                    <p className="text-[10px] font-[400]">
-                      {new Date(item.createdAt).toLocaleTimeString()}
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-x-2 w-2/5">
-                    <p className="text-[16px] font-[400]">{item.body}</p>
+                <p className="text-[20px] font-[600] mb-2">{item.title}</p>
+                <div className="flex items-start justify-between gap-2 py-[10px]">
+                  <p className="text-[16px] font-[400]">{item.body}</p>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-x-2">
+                      <LuCalendarDays size={20} />
+                      <p className="text-[10px] font-[400]">
+                        {new Date(item.createdAt).toLocaleDateString()}
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-x-2">
+                      <FaRegClock size={20} />
+                      <p className="text-[10px] font-[400]">
+                        {new Date(item.createdAt).toLocaleTimeString()}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>

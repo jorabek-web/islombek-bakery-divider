@@ -18,6 +18,7 @@ import { useState } from "react";
 import { MoneyFormatter } from "../../utils";
 import toast, { Toaster } from "react-hot-toast";
 import { useGetUSerMeQuery, useUpdateRefundMutation } from "@/integration";
+import { IoArrowBack } from "react-icons/io5";
 
 export const SalariesUI = () => {
   const navigate = useNavigate();
@@ -53,22 +54,24 @@ export const SalariesUI = () => {
 
   return (
     <div>
-      <header className="flex justify-center items-center border-b-2 border-b-[#FFCC15] pb-3 rounded-[30px] fixed top-0 left-0 w-full">
+      <header className="flex justify-between items-end px-5 border-b-2 border-b-[#FFCC15] pb-3 rounded-[30px] fixed top-0 left-0 w-full">
         <Toaster position="top-center" reverseOrder={false} />
+        <IoArrowBack
+          size={25}
+          onClick={() => navigate(-1)}
+          className="bg-[#FFCC15] text-[#1C2C57] rounded-full p-1 shrink-0 cursor-pointer"
+        />
         <h2 className="text-white text-center font-inter text-[25px] font-bold tracking-[1px] mt-2 flex flex-col items-center ">
           <p>Balans</p>
           <p>{user?.salaryBalance}</p>
         </h2>
 
-        <div className="absolute bottom-6 right-20">
           <IoMdNotifications
             onClick={() => navigate("/notification")}
-            className="relative left-14"
             size={30}
             color="#FFCC15"
             cursor={"pointer"}
           />
-        </div>
       </header>
 
       <div className="mt-10 space-y-10">
