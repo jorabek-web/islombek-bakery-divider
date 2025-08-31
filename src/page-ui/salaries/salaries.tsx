@@ -63,15 +63,15 @@ export const SalariesUI = () => {
         />
         <h2 className="text-white text-center font-inter text-[25px] font-bold tracking-[1px] mt-2 flex flex-col items-center ">
           <p>Balans</p>
-          <p>{user?.salaryBalance}</p>
+          <p>{MoneyFormatter(user?.salaryBalance ?? "0")}</p>
         </h2>
 
-          <IoMdNotifications
-            onClick={() => navigate("/notification")}
-            size={30}
-            color="#FFCC15"
-            cursor={"pointer"}
-          />
+        <IoMdNotifications
+          onClick={() => navigate("/notification")}
+          size={30}
+          color="#FFCC15"
+          cursor={"pointer"}
+        />
       </header>
 
       <div className="mt-10 space-y-10">
